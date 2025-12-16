@@ -245,19 +245,6 @@ CREATE TABLE posts (
 );
 ```
 
-## 🚧 Future Enhancements
-
-- [ ] Integrate real Twitter/Reddit APIs
-- [ ] Add sentiment analysis (positive/negative/neutral)
-- [ ] Implement time-series trend prediction
-- [ ] Create interactive web dashboard (React/Vue.js)
-- [ ] Add user authentication and rate limiting
-- [ ] Deploy as containerized application (Docker)
-- [ ] Add comprehensive unit tests
-- [ ] Set up CI/CD pipeline (GitHub Actions)
-- [ ] Support for multiple languages
-- [ ] Real-time streaming data processing
-
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how you can help:
@@ -311,22 +298,6 @@ numpy==1.26.2
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👤 Author
-
-**Chethan** ([@chetx27](https://github.com/chetx27))
-
-- 🎓 Engineering Student | Data Science Enthusiast
-- 💼 Campus Ambassador at Naviotech Solutions
-- 🌱 Learning: Full-stack Development & Machine Learning
-- 📫 Open to collaboration and feedback!
-
-## 🙏 Acknowledgments
-
-- NLTK team for comprehensive NLP tools
-- Gensim community for topic modeling implementations
-- scikit-learn for machine learning utilities
-- Flask framework for simple API development
 
 ## ⭐ Show Your Support
 
