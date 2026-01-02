@@ -1,308 +1,434 @@
-# 🚀 Social Media Trend Detection System
+# 🔍 Social Trend Detector
 
-**Real-time trend detection using Machine Learning & Natural Language Processing**
-
-[![Python](https://img.shields.io/badge/Python-3.13.7-blue.svg)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Flask-Latest-green.svg)](https://flask.palletsprojects.com/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Flask](https://img.shields.io/badge/Flask-3.0.0-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![NLP](https://img.shields.io/badge/NLP-NLTK%20%7C%20Gensim-orange.svg)]()
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-## 📋 Overview
+A powerful real-time social media trend detection system powered by Machine Learning and Natural Language Processing. Analyze social conversations, detect emerging trends, and gain actionable insights from social media data.
 
-This project implements an **end-to-end data pipeline** that demonstrates core concepts in data management and machine learning:
+## ✨ Features
 
-- **Data Ingestion**: Collects social media posts (Twitter/Reddit)
-- **Data Processing**: Cleans, normalizes, and extracts features
-- **Machine Learning**: Applies LDA topic modeling + anomaly detection
-- **API Dashboard**: Provides REST endpoints for trend analysis
+### Core Capabilities
+- 🚀 **Real-time Trend Detection** - Identify emerging trends as they happen
+- 🧠 **Machine Learning Analysis** - Advanced ML algorithms for pattern recognition
+- 💬 **Sentiment Analysis** - Understand public sentiment around trends
+- 📊 **Interactive Dashboard** - Visual analytics and trend visualization
+- 🔄 **Data Processing Pipeline** - Efficient ingestion and processing of social data
+- 💾 **Persistent Storage** - SQLite database for historical trend tracking
+- 📤 **Export Functionality** - Export trends and insights in multiple formats
+- 🐳 **Docker Support** - Containerized deployment for easy setup
 
-Perfect for understanding the **data value chain**: generation → acquisition → organization → processing → learning & predictions.
+### Advanced Features
+- Topic modeling using Gensim
+- Text preprocessing and normalization
+- Keyword extraction and analysis
+- Time-series trend tracking
+- Multi-platform data ingestion support
+- RESTful API endpoints
+- Comprehensive test suite
 
-## 🎯 Key Features
+## 🏗️ Architecture
 
-✅ **50+ Mock Social Posts** - Pre-generated data (Twitter + Reddit)  
-✅ **NLP Text Processing** - Lemmatization, stopword removal, cleaning  
-✅ **LDA Topic Modeling** - Discovers 3 hidden topics in data  
-✅ **Anomaly Detection** - Identifies viral posts using Isolation Forest  
-✅ **SQLite Database** - Local, zero-setup, file-based storage  
-✅ **Flask REST API** - Dashboard with 3 endpoints  
-✅ **100% Python** - No external APIs, runs offline  
+```
+┌─────────────────┐
+│  Data Ingestion │
+│   (ingestor.py) │
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐
+│  Data Processor │
+│  (processor.py) │
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐     ┌──────────────────┐
+│   ML Analysis   │────→│ Sentiment Model  │
+│  (ml_model.py)  │     │(sentiment_*.py)  │
+└────────┬────────┘     └──────────────────┘
+         │
+         ↓
+┌─────────────────┐
+│   SQLite DB     │
+│   (trends.db)   │
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐
+│  Flask API      │
+│   (app.py)      │
+└────────┬────────┘
+         │
+         ↓
+┌─────────────────┐
+│   Dashboard     │
+│(dashboard.html) │
+└─────────────────┘
+```
 
-## 📊 Tech Stack
+## 🛠️ Tech Stack
 
-| Component | Technology |
-|-----------|------------|
-| Language | Python 3.13.7 |
-| Database | SQLite (local) |
-| NLP | NLTK, Gensim, scikit-learn |
-| Web Framework | Flask |
-| ML Algorithms | LDA, Isolation Forest |
+### Backend
+- **Python 3.8+** - Core programming language
+- **Flask 3.0.0** - Web framework
+- **SQLite** - Database for trend storage
+
+### Machine Learning & NLP
+- **NLTK 3.8.1** - Natural Language Toolkit
+- **Gensim 4.3.2** - Topic modeling and document similarity
+- **Scikit-learn 1.3.2** - Machine learning algorithms
+
+### Data Processing
+- **Pandas 2.1.3** - Data manipulation and analysis
+- **NumPy 1.26.2** - Numerical computing
+
+### Development Tools
+- **Docker** - Containerization
+- **pytest** - Testing framework
+- **python-dotenv** - Environment variable management
+
+## 📋 Prerequisites
+
+Before you begin, ensure you have:
+- Python 3.8 or higher
+- pip (Python package manager)
+- Docker (optional, for containerized deployment)
+
+## 🚀 Quick Start
+
+### Option 1: Standard Installation
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/chetx27/social-trend-detector.git
+cd social-trend-detector
+```
+
+#### 2. Create Virtual Environment
+
+```bash
+# Windows
+python -m venv venv
+venv\Scripts\activate
+
+# macOS/Linux
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+#### 4. Download NLTK Data
+
+```bash
+python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('vader_lexicon')"
+```
+
+#### 5. Configure Environment Variables
+
+Create a `.env` file in the root directory:
+
+```env
+# Flask Configuration
+FLASK_APP=app.py
+FLASK_ENV=development
+FLASK_DEBUG=1
+
+# Database
+DATABASE_PATH=trends.db
+
+# API Configuration
+API_PORT=5000
+API_HOST=0.0.0.0
+```
+
+#### 6. Run the Application
+
+```bash
+# Basic app
+python app.py
+
+# Enhanced app with more features
+python app_enhanced.py
+
+# Or run the main entry point
+python main.py
+```
+
+The application will be available at `http://localhost:5000`
+
+### Option 2: Docker Deployment
+
+#### Using Docker Compose
+
+```bash
+# Build and start the container
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop the container
+docker-compose down
+```
+
+#### Using Docker Directly
+
+```bash
+# Build the image
+docker build -t social-trend-detector .
+
+# Run the container
+docker run -p 5000:5000 -e FLASK_ENV=production social-trend-detector
+```
+
+## 📖 Usage
+
+### API Endpoints
+
+#### Get Trending Topics
+```bash
+GET /api/trends
+```
+
+#### Analyze Sentiment
+```bash
+POST /api/sentiment
+Content-Type: application/json
+
+{
+  "text": "Your text to analyze"
+}
+```
+
+#### Ingest Data
+```bash
+POST /api/ingest
+Content-Type: application/json
+
+{
+  "data": "Social media content",
+  "source": "twitter"
+}
+```
+
+### Dashboard
+
+Access the interactive dashboard at:
+```
+http://localhost:5000/dashboard
+```
+
+### Python API
+
+```python
+from ingestor import DataIngestor
+from processor import DataProcessor
+from ml_model import TrendDetector
+
+# Ingest data
+ingestor = DataIngestor()
+ingestor.ingest_data(source='twitter', data=your_data)
+
+# Process data
+processor = DataProcessor()
+processed_data = processor.process(your_data)
+
+# Detect trends
+detector = TrendDetector()
+trends = detector.detect_trends(processed_data)
+```
 
 ## 📁 Project Structure
 
 ```
 social-trend-detector/
-├── src/
-│   ├── pipeline.py          # Main data pipeline
-│   ├── app.py               # Flask API server
-│   ├── data_ingestion.py    # Mock data generation
-│   ├── data_processing.py   # NLP preprocessing
-│   ├── ml_models.py         # LDA & anomaly detection
-│   └── database.py          # SQLite operations
-├── data/
-│   └── trends.db            # SQLite database (generated)
+├── app.py                    # Main Flask application
+├── app_enhanced.py           # Enhanced version with additional features
+├── main.py                   # Entry point
+├── config.py                 # Configuration management
+├── ingestor.py              # Data ingestion module
+├── processor.py             # Data processing pipeline
+├── ml_model.py              # Machine learning models
+├── sentiment_analyzer.py    # Sentiment analysis module
+├── export_utils.py          # Data export utilities
+├── test_suite.py            # Test cases
+├── dashboard.html           # Web dashboard
+├── trends.db                # SQLite database
 ├── requirements.txt         # Python dependencies
-├── README.md
-└── LICENSE
+├── Dockerfile               # Docker configuration
+├── docker-compose.yml       # Docker Compose setup
+├── .env                     # Environment variables
+├── .gitignore              # Git ignore rules
+└── README.md               # This file
 ```
 
-## 🛠️ Installation
+## 🧪 Testing
 
-### Prerequisites
-- Python 3.13.7+ installed
-- pip package manager
-
-### Setup Steps
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/chetx27/social-trend-detector.git
-   cd social-trend-detector
-   ```
-
-2. **Create virtual environment** (recommended)
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Download NLTK data**
-   ```bash
-   python -c "import nltk; nltk.download('stopwords'); nltk.download('wordnet'); nltk.download('omw-1.4')"
-   ```
-
-## 🚀 Quick Start
-
-### 1. Run the Data Pipeline
+Run the test suite:
 
 ```bash
-python src/pipeline.py
+# Run all tests
+pytest
+
+# Run with coverage report
+pytest --cov=. --cov-report=html
+
+# Run specific test file
+pytest test_suite.py -v
 ```
 
-**What happens:**
-- Generates 50+ mock social media posts
-- Processes text with NLP (cleaning, lemmatization)
-- Applies LDA topic modeling (discovers 3 topics)
-- Runs anomaly detection on engagement metrics
-- Stores results in SQLite database
+## 🔧 Configuration
 
-### 2. Start the Flask API
+### Environment Variables
 
-```bash
-python src/app.py
-```
+| Variable | Description | Default |
+|----------|-------------|--------|
+| `FLASK_APP` | Flask application entry point | `app.py` |
+| `FLASK_ENV` | Environment (development/production) | `development` |
+| `FLASK_DEBUG` | Enable debug mode | `1` |
+| `DATABASE_PATH` | Path to SQLite database | `trends.db` |
+| `API_PORT` | API server port | `5000` |
+| `API_HOST` | API server host | `0.0.0.0` |
 
-API runs on `http://localhost:5000`
+### Customization
 
-### 3. Test API Endpoints
+Edit `config.py` to customize:
+- Model parameters
+- Processing thresholds
+- Data retention policies
+- API rate limits
 
-```bash
-# Get all trends
-curl http://localhost:5000/api/trends
+## 📊 Data Flow
 
-# Get discovered topics
-curl http://localhost:5000/api/topics
+1. **Ingestion**: Raw social media data is collected via `ingestor.py`
+2. **Processing**: Text is cleaned, normalized, and prepared by `processor.py`
+3. **Analysis**: ML models analyze patterns and detect trends via `ml_model.py`
+4. **Sentiment**: Public sentiment is evaluated using `sentiment_analyzer.py`
+5. **Storage**: Results are stored in SQLite database (`trends.db`)
+6. **Visualization**: Trends are displayed on the interactive dashboard
+7. **Export**: Data can be exported using `export_utils.py`
 
-# Get viral/anomalous posts
-curl http://localhost:5000/api/anomalies
-```
+## 🔍 Key Modules
 
-## 📡 API Documentation
+### Data Ingestor
+Handles data collection from various sources with support for multiple platforms.
 
-| Endpoint | Method | Description | Response |
-|----------|--------|-------------|----------|
-| `/api/trends` | GET | Fetch all processed trends | JSON array of posts with metadata |
-| `/api/topics` | GET | Get discovered LDA topics | JSON with topic keywords & weights |
-| `/api/anomalies` | GET | Retrieve viral/anomalous posts | JSON array of flagged posts |
+### Data Processor
+Cleans and preprocesses text data including:
+- Text normalization
+- Stopword removal
+- Tokenization
+- Lemmatization
 
-### Sample API Response - Trending Topics
-
-```json
-{
-  "topics": [
-    {
-      "topic_id": 0,
-      "keywords": ["AI", "machine", "learning", "neural", "data"],
-      "weight": 0.35
-    },
-    {
-      "topic_id": 1,
-      "keywords": ["climate", "change", "environment", "sustainable", "green"],
-      "weight": 0.28
-    },
-    {
-      "topic_id": 2,
-      "keywords": ["technology", "innovation", "startup", "digital", "future"],
-      "weight": 0.37
-    }
-  ]
-}
-```
-
-### Sample API Response - Anomalies
-
-```json
-{
-  "anomalies": [
-    {
-      "post_id": 23,
-      "content": "Breaking: New AI breakthrough announced!",
-      "engagement_score": 8500,
-      "anomaly_score": 0.92,
-      "platform": "Twitter",
-      "timestamp": "2024-12-16T14:30:00Z"
-    }
-  ]
-}
-```
-
-## 🎓 Learning Outcomes
-
-This project demonstrates:
-
-### Data Engineering
-- ETL pipeline design and implementation
-- Data cleaning and preprocessing techniques
-- Feature extraction from unstructured text
-
-### Machine Learning
-- **Unsupervised Learning**: LDA (Latent Dirichlet Allocation) for topic modeling
-- **Anomaly Detection**: Isolation Forest for identifying viral content
-- Model training and evaluation workflows
-
-### Natural Language Processing
-- Text preprocessing (tokenization, stopword removal)
-- Lemmatization and normalization
+### ML Model
+Detects trends using:
 - TF-IDF vectorization
+- Clustering algorithms
+- Topic modeling
+- Pattern recognition
 
-### Backend Development
-- REST API design with Flask
-- JSON response formatting
-- Error handling and validation
+### Sentiment Analyzer
+Analyzes sentiment using:
+- VADER sentiment analysis
+- Custom sentiment models
+- Emotion detection
 
-### Database Management
-- SQLite schema design
-- CRUD operations
-- Query optimization
+## 🐛 Troubleshooting
 
-### Software Architecture
-- Modular code structure
-- Separation of concerns
-- Configuration management
+### Common Issues
 
-## 🔧 Technical Details
+**Issue**: `ModuleNotFoundError: No module named 'nltk'`
+```bash
+pip install nltk
+```
 
-### Machine Learning Pipeline
+**Issue**: NLTK data not found
+```bash
+python -c "import nltk; nltk.download('all')"
+```
 
-1. **Text Preprocessing**
-   - Lowercase conversion
-   - Remove special characters, URLs, mentions
-   - Tokenization
-   - Stopword removal
-   - Lemmatization
+**Issue**: Database locked
+```bash
+# Remove the lock file
+rm trends.db-journal
+```
 
-2. **Feature Extraction**
-   - TF-IDF vectorization
-   - N-gram generation (unigrams, bigrams)
-
-3. **Topic Modeling (LDA)**
-   - Number of topics: 3
-   - Algorithm: Gibbs Sampling
-   - Outputs: Topic-keyword distributions
-
-4. **Anomaly Detection**
-   - Algorithm: Isolation Forest
-   - Features: Engagement metrics (likes, shares, comments)
-   - Threshold: Top 5% flagged as anomalies
-
-### Database Schema
-
-```sql
-CREATE TABLE posts (
-    id INTEGER PRIMARY KEY,
-    content TEXT NOT NULL,
-    platform TEXT,
-    engagement_score INTEGER,
-    topic_id INTEGER,
-    is_anomaly BOOLEAN,
-    processed_text TEXT,
-    timestamp DATETIME
-);
+**Issue**: Port 5000 already in use
+```bash
+# Change the port in .env file
+API_PORT=5001
 ```
 
 ## 🤝 Contributing
 
 Contributions are welcome! Here's how you can help:
 
-1. **Fork the repository**
-2. **Create a feature branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit your changes**
-   ```bash
-   git commit -m 'Add some AmazingFeature'
-   ```
-4. **Push to the branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open a Pull Request**
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-### Contribution Ideas
-- Improve NLP preprocessing pipeline
-- Add more ML algorithms (clustering, classification)
-- Optimize database queries
-- Write documentation and tutorials
-- Report bugs and suggest features
+Please ensure:
+- Code follows PEP 8 style guidelines
+- All tests pass
+- New features include tests
+- Documentation is updated
 
-## 📝 Requirements
-
-```txt
-Flask==3.0.0
-nltk==3.8.1
-gensim==4.3.2
-scikit-learn==1.3.2
-pandas==2.1.3
-numpy==1.26.2
-```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-**Issue**: `ModuleNotFoundError: No module named 'nltk'`  
-**Solution**: Run `pip install -r requirements.txt`
-
-**Issue**: `Resource 'corpora/stopwords' not found`  
-**Solution**: Download NLTK data: `python -c "import nltk; nltk.download('stopwords')"`
-
-**Issue**: Database locked error  
-**Solution**: Close any database connections and restart the pipeline
-
-## 📄 License
+## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## ⭐ Show Your Support
+## 👤 Author
 
-If this project helped you learn something new, give it a ⭐️!
+**chetx27**
+- GitHub: [@chetx27](https://github.com/chetx27)
+- Repository: [social-trend-detector](https://github.com/chetx27/social-trend-detector)
+
+## 🙏 Acknowledgments
+
+- **NLTK** - Natural Language Processing toolkit
+- **Gensim** - Topic modeling and document similarity
+- **Flask** - Web framework
+- **Scikit-learn** - Machine learning library
+- All contributors and users of this project
+
+## 🔗 Related Projects
+
+- [Twitter API](https://developer.twitter.com/en/docs)
+- [Reddit API](https://www.reddit.com/dev/api/)
+- [NLTK Documentation](https://www.nltk.org/)
+- [Gensim Documentation](https://radimrehurek.com/gensim/)
+
+## 📈 Roadmap
+
+- [ ] Add support for more social media platforms
+- [ ] Implement real-time streaming analysis
+- [ ] Add user authentication and authorization
+- [ ] Enhance dashboard with more visualizations
+- [ ] Add predictive analytics for trend forecasting
+- [ ] Implement API rate limiting and caching
+- [ ] Add multi-language support
+- [ ] Create mobile-responsive dashboard
+- [ ] Implement WebSocket for real-time updates
+- [ ] Add export to more formats (PDF, Excel)
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+- Open an [issue](https://github.com/chetx27/social-trend-detector/issues)
+- Check existing [documentation](https://github.com/chetx27/social-trend-detector/wiki)
+- Review [closed issues](https://github.com/chetx27/social-trend-detector/issues?q=is%3Aissue+is%3Aclosed)
 
 ---
 
-**Built with ❤️ by [@chetx27](https://github.com/chetx27)**
+⭐ **Star this repository if you find it helpful!**
+
+Made with ❤️ by [chetx27](https://github.com/chetx27)
