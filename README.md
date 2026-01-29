@@ -382,17 +382,17 @@ Please ensure:
 - New features include tests
 - Documentation is updated
 
-## 📝 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
+## Author
 
 **chetx27**
 - GitHub: [@chetx27](https://github.com/chetx27)
 - Repository: [social-trend-detector](https://github.com/chetx27/social-trend-detector)
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **NLTK** - Natural Language Processing toolkit
 - **Gensim** - Topic modeling and document similarity
@@ -407,7 +407,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [NLTK Documentation](https://www.nltk.org/)
 - [Gensim Documentation](https://radimrehurek.com/gensim/)
 
-## 📈 Roadmap
+## Roadmap
 
 - [ ] Add support for more social media platforms
 - [ ] Implement real-time streaming analysis
@@ -420,7 +420,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Implement WebSocket for real-time updates
 - [ ] Add export to more formats (PDF, Excel)
 
-## 📞 Support
+## Support
 
 If you encounter any issues or have questions:
 - Open an [issue](https://github.com/chetx27/social-trend-detector/issues)
@@ -431,4 +431,4 @@ If you encounter any issues or have questions:
 
 ⭐ **Star this repository if you find it helpful!**
 
-Made with ❤️ by [chetx27](https://github.com/chetx27)
+Made by [chetx27](https://github.com/chetx27)
