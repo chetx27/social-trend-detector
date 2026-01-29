@@ -28,7 +28,7 @@ A powerful real-time social media trend detection system powered by Machine Lear
 - RESTful API endpoints
 - Comprehensive test suite
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐
@@ -67,7 +67,7 @@ A powerful real-time social media trend detection system powered by Machine Lear
 └─────────────────┘
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Backend
 - **Python 3.8+** - Core programming language
