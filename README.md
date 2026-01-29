@@ -7,17 +7,17 @@
 
 A powerful real-time social media trend detection system powered by Machine Learning and Natural Language Processing. Analyze social conversations, detect emerging trends, and gain actionable insights from social media data.
 
-## ✨ Features
+##  Features
 
 ### Core Capabilities
-- 🚀 **Real-time Trend Detection** - Identify emerging trends as they happen
-- 🧠 **Machine Learning Analysis** - Advanced ML algorithms for pattern recognition
-- 💬 **Sentiment Analysis** - Understand public sentiment around trends
-- 📊 **Interactive Dashboard** - Visual analytics and trend visualization
-- 🔄 **Data Processing Pipeline** - Efficient ingestion and processing of social data
-- 💾 **Persistent Storage** - SQLite database for historical trend tracking
-- 📤 **Export Functionality** - Export trends and insights in multiple formats
-- 🐳 **Docker Support** - Containerized deployment for easy setup
+-  **Real-time Trend Detection** - Identify emerging trends as they happen
+-  **Machine Learning Analysis** - Advanced ML algorithms for pattern recognition
+-  **Sentiment Analysis** - Understand public sentiment around trends
+-  **Interactive Dashboard** - Visual analytics and trend visualization
+-  **Data Processing Pipeline** - Efficient ingestion and processing of social data
+-  **Persistent Storage** - SQLite database for historical trend tracking
+- **Export Functionality** - Export trends and insights in multiple formats
+-  **Docker Support** - Containerized deployment for easy setup
 
 ### Advanced Features
 - Topic modeling using Gensim
