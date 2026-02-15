@@ -26,7 +26,7 @@ class TrendDetector:
         ).fetchall()
         
         if len(posts) < 10:
-            print("⚠️ Not enough data for LDA (need 10+)")
+            print("Not enough data for LDA (need 10+)")
             return None
         
         texts = [post[0].split() for post in posts]
@@ -34,7 +34,7 @@ class TrendDetector:
         corpus = [dictionary.doc2bow(text) for text in texts]
         
         self.lda_model = LdaModel(corpus, num_topics=num_topics, id2word=dictionary, passes=5)
-        print("✅ LDA model trained")
+        print(" LDA model trained")
         
         for topic_id, topic in self.lda_model.print_topics(num_words=5):
             print(f"   Topic {topic_id}: {topic}")
@@ -48,7 +48,7 @@ class TrendDetector:
         ).fetchall()
         
         if len(posts) < 5:
-            print("⚠️ Not enough data for anomaly detection")
+            print(" Not enough data for anomaly detection")
             return []
         
         scores = np.array([post[4] for post in posts]).reshape(-1, 1)
@@ -73,7 +73,7 @@ class TrendDetector:
                 viral_posts
             )
             self.conn.commit()
-            print(f"🚨 Found {len(viral_posts)} viral trends!")
+            print(f" Found {len(viral_posts)} viral trends!")
         
         return viral_posts
     
